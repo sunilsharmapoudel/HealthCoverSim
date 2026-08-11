@@ -41,17 +41,6 @@ npm run dev
 
 Open `http://localhost:5173`.
 
-## Running the pricing logic tests
-
-The core pricing engine (`server/pricing.js`) is unit-tested against the
-spec's worked example (Section 7) and the main edge cases (age ≤ 30, hospital
-= None, "Not sure" history, Monthly vs Yearly):
-
-```bash
-cd server
-npm test
-```
-
 ## Project structure
 
 ```
