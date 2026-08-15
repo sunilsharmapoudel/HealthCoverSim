@@ -1,13 +1,3 @@
-/**
- * HealthCoverSim pricing engine — pure function, no Express/SQLite/React.
- * Implements Sections 5-7 of the spec. See pricing.test.js for the Section 7
- * worked example and edge cases this is verified against.
- *
- * Required statement (Section 6), included verbatim in every result:
- * "Lifetime Health Cover loading applies only to hospital cover. It does not
- * apply to extras cover."
- */
-
 function getExtrasTierPrice(tier) {
   const prices = {
     None: 0,

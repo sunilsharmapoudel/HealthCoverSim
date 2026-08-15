@@ -1,10 +1,3 @@
-/**
- * Section 9 validation, shared shape used by both the create and update
- * routes. Works on the raw request body (snake_case, matching the DB
- * columns) and returns a list of human-readable error messages. Empty
- * array = valid.
- */
-
 const COVER_TYPES = ['Single', 'Couple', 'Family'];
 const HISTORY_VALUES = ['Yes', 'No', 'Not sure'];
 const HOSPITAL_TIERS = ['None', 'Basic', 'Bronze', 'Silver', 'Gold'];

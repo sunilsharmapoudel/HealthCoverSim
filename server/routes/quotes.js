@@ -5,10 +5,6 @@ const { validateQuoteInput } = require('../validation');
 
 const router = express.Router();
 
-// Coerce raw request body into consistent types before validation/storage.
-// Frontend forms and direct API calls both land here, so this is the one
-// place that normalizes "18" (string) vs 18 (number), trims whitespace, and
-// nulls out applicant 2 fields for Single cover regardless of what was sent.
 function normalizeInput(body) {
   const coverType = body.cover_type;
   const toNumberOrNull = (v) => (v === '' || v === null || v === undefined ? null : Number(v));
@@ -43,8 +39,6 @@ function rowToPricingInput(row) {
   };
 }
 
-// GET /api/quotes — list, with a lightweight premium summary per row so the
-// list page is actually useful without opening every quote.
 router.get('/', (req, res) => {
   const rows = db.prepare('SELECT * FROM quotes ORDER BY created_at DESC').all();
   const summaries = rows.map((row) => {
@@ -64,9 +58,6 @@ router.get('/', (req, res) => {
   res.json(summaries);
 });
 
-// GET /api/quotes/:id — full row plus the calculated explanation sheet.
-// The breakdown is never stored — it's recalculated from the stored inputs
-// every time, so pricing.js stays the single source of truth (spec Section 10).
 router.get('/:id', (req, res) => {
   const row = db.prepare('SELECT * FROM quotes WHERE id = ?').get(req.params.id);
   if (!row) {

@@ -13,10 +13,6 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// Catches malformed JSON bodies (express.json() throws) and anything else
-// thrown/rejected in a route — so bad input always returns a JSON error
-// instead of an unhandled exception crashing the process or leaking a stack
-// trace as a raw HTML 500 page (spec Section 9: backend must not crash).
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(400).json({ errors: ['Invalid request.'] });

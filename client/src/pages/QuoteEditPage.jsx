@@ -3,8 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import QuoteFormFields from '../components/QuoteFormFields';
 import { getQuote, updateQuote } from '../api';
 
-// Converts a stored quote row (numbers, nulls) into the string-based shape
-// the controlled form inputs expect.
 function quoteToFormValues(quote) {
   return {
     customer_name: quote.customer_name,
